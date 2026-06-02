@@ -88,5 +88,5 @@ Na **Fase 2** do projeto serão acrescentados ao site:
 
 ## Autoria
 
-Desenvolvido por **Patric Sampaio Martins** como projeto acadêmico do
+Desenvolvido por **Leticia Pinto Chaves** como projeto acadêmico do
 curso, ano 2026.
