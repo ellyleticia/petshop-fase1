@@ -1,92 +1,140 @@
-# Petshop - Fase 1
+# 🐾 Pet Amigo — Site do Petshop
 
-Site institucional do petshop fictício **Pet Amigo**, desenvolvido como
-projeto acadêmico. Esta é a **Fase 1** do trabalho e contém apenas a
-estrutura em HTML5 puro, sem CSS nem JavaScript.
+Site institucional do petshop fictício **Pet Amigo**, desenvolvido como projeto
+acadêmico (Fase 2). É um **site estático** — feito com HTML5, CSS3, JavaScript e
+**Bootstrap 5** — pensado para ser publicado no **GitHub Pages**.
 
-## Objetivo
+O Pet Amigo apresenta a marca, seus produtos e serviços, e oferece formulários
+de **cadastro de cliente/pet** e de **agendamento de serviços**, com foco em
+visual amigável, responsividade (celular) e **acessibilidade**.
 
-Apresentar a marca, os produtos e os serviços do petshop em quatro páginas
-estáticas e navegáveis, demonstrando o uso de:
+Este arquivo serve como **ajuda/documentação** do projeto.
 
-- HTML5 semântico (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`,
-  `<figure>`, `<table>`, `<address>`, `<footer>`).
-- Atributos HTML clássicos de apresentação (`width`, `height`, `align`,
-  `border`) em substituição ao CSS.
-- Links de navegação interna com caminhos relativos.
-- Listas, tabelas e figuras como meios de organizar o conteúdo sem folhas
-  de estilo.
+---
 
-## Páginas
+## 📄 Páginas do site
 
-| Arquivo | Página | O que mostra |
-|---|---|---|
-| `index.html` | Início | Boas-vindas, apresentação do petshop e seção de destaques com chamadas para Produtos e Serviços. |
-| `produtos.html` | Produtos | Catálogo dividido em três categorias: **Alimentação**, **Higiene** e **Acessórios**, com dois produtos por categoria (foto, nome, descrição e preço). |
-| `servicos.html` | Serviços | Tabela com os serviços oferecidos, valor em R$ e coluna indicando disponibilidade de **tele-busca** (Sim / Não). |
-| `contato.html` | Contato | Endereço completo em Porto Alegre/RS, canais de atendimento (telefone, WhatsApp e e-mail) e horário de funcionamento. |
+| Página | Arquivo | O que faz |
+| --- | --- | --- |
+| **Início** | `index.html` | Página inicial com um **carrossel** (Bootstrap) de 3 destaques — alimentação, banho/higiene e pets felizes — além da apresentação da loja. |
+| **Serviços** | `servicos.html` | Tabela com os serviços oferecidos (banho, tosa, consulta, vacinação, hospedagem, corte de unhas), valores e disponibilidade de tele-busca. |
+| **Produtos** | `produtos.html` | Catálogo de produtos em três categorias — **Alimentação, Higiene e Acessórios** — com imagem, descrição e preço de cada item. |
+| **Cadastro** | `cadastro.html` | Formulário de **cadastro de cliente e pet** (com máscaras e validação). |
+| **Agendamento** | `agendamento.html` | Formulário para **agendar um serviço** (nome, serviço, data e observações) com resumo na própria página. |
+| **Contato** | `contato.html` | Endereço, canais de atendimento, horário de funcionamento e como visitar a loja. |
 
-## Como navegar
+Todas as páginas compartilham o mesmo **cabeçalho** (logo + menu de navegação +
+relógio/saudação) e o mesmo **rodapé** (menu, endereço e direitos autorais).
 
-Todas as páginas contêm o mesmo **menu de navegação** no `<header>` e no
-`<footer>`, com links relativos para as quatro páginas do site. Basta
-clicar em qualquer item do menu para alternar entre Início, Produtos,
-Serviços e Contato.
+---
 
-Para abrir o site localmente, basta abrir o arquivo `index.html` em um
-navegador de internet (Google Chrome, Firefox, Edge ou Safari). Nenhuma
-instalação ou servidor é necessário, pois o site é totalmente estático.
+## ⚙️ Funcionalidades em JavaScript
 
-## Estrutura de pastas e arquivos
+Todo o JavaScript fica em `assets/js/script.js` e **só executa depois que a
+página carrega** (`DOMContentLoaded`). Como o site é estático, tudo roda no
+navegador, sem servidor.
+
+### Funções temporais (em todas as páginas)
+- **Relógio com data e hora**: exibido no cabeçalho e atualizado **a cada
+  segundo** (`setInterval`), no formato brasileiro.
+- **Saudação por horário**: mostra *"Bom dia"*, *"Boa tarde"* ou *"Boa noite"*
+  conforme a hora atual.
+- **Ano automático no rodapé**: o ano do `©` é preenchido sozinho com o ano
+  corrente (não precisa atualizar à mão todo ano).
+
+### Formulário de cadastro (`cadastro.html`)
+- **Máscara de CPF** aplicada enquanto o usuário digita → `000.000.000-00`.
+- **Máscara de telefone** enquanto digita → `(00) 00000-0000` (celular) ou
+  `(00) 0000-0000` (fixo).
+- **Validação no envio** (`submit` + `preventDefault`): confere os campos
+  obrigatórios; se algo estiver errado, mostra um aviso vermelho na página.
+- **Confirmação visível**: se estiver tudo certo, exibe uma mensagem de sucesso
+  personalizada na própria página e **limpa o formulário** (sem usar `alert`).
+
+### Formulário de agendamento (`agendamento.html`)
+- **Validação no envio** dos campos obrigatórios (nome, serviço e data).
+- **Resumo do agendamento**: ao confirmar, monta e exibe na página um resumo
+  com cliente, serviço escolhido, data (convertida para `DD/MM/AAAA`) e
+  observações; depois **limpa o formulário**.
+
+---
+
+## ♿ Recursos de acessibilidade
+
+O site foi revisado com foco em pessoas com deficiência visual:
+
+- **Textos alternativos (`alt`)** descritivos em todas as imagens (logo,
+  carrossel e produtos) — funcionam como audiodescrição.
+- **Idioma da página** declarado em todas as páginas (`<html lang="pt-br">`).
+- **Rótulos `<label>`** associados (via `for`/`id`) a todos os campos de
+  formulário.
+- **Regiões nomeadas com `aria-label`**: navegação principal, navegação do
+  rodapé e o carrossel.
+- **Link "Pular para o conteúdo"** (skip link) no topo de cada página, que
+  aparece ao navegar por teclado e leva direto ao conteúdo principal.
+- **Contraste de cores** ajustado para atender ao padrão **WCAG AA** (mínimo
+  4.5:1 entre texto e fundo).
+- **Foco visível** ao navegar com a tecla **Tab** (contorno destacado nos
+  links, botões e campos).
+
+---
+
+## 🎨 Visual e responsividade
+
+- Estilos próprios em `assets/css/styles.css`, com **paleta quente** definida em
+  variáveis CSS, tipografia legível, cabeçalho e rodapé estilizados, e **efeito
+  hover** em botões e cards.
+- **Bootstrap 5** (via CDN) para componentes (carrossel, formulários, grid) e
+  responsividade — o layout se adapta ao **celular**.
+
+---
+
+## 🚀 Como abrir / usar o site
+
+### Opção 1 — Abrir direto no navegador
+Basta abrir o arquivo **`index.html`** com um duplo clique. A navegação entre as
+páginas funciona normalmente.
+
+### Opção 2 — Servidor local (recomendado para testar os caminhos como no GitHub Pages)
+No terminal, dentro da pasta do projeto:
+
+```bash
+python3 -m http.server 8000
+```
+
+Depois acesse no navegador: <http://localhost:8000/index.html>
+
+> **Dica:** para testar a acessibilidade, pressione **Tab** ao abrir uma página —
+> o primeiro item em foco é o "Pular para o conteúdo".
+
+---
+
+## 📁 Estrutura de pastas
 
 ```
-petshop-fase1/
-├── README.md           Este arquivo de ajuda
-├── .gitignore          Lista de arquivos ignorados pelo Git
-├── index.html          Página inicial
-├── produtos.html       Catálogo de produtos
-├── servicos.html       Tabela de serviços
-├── contato.html        Informações de contato
-└── assets/
-    └── img/            Imagens utilizadas no site
-        ├── logo.png
-        ├── racao-caes-adultos.jpg
-        ├── racao-gatos-filhotes.jpg
-        ├── shampoo-pelos-claros.jpg
-        ├── escova-dental-pet.jpg
-        ├── coleira-ajustavel.jpg
-        └── brinquedo-mordedor.jpg
+projeto-fase1-petshop/
+├── index.html          # Início (carrossel)
+├── servicos.html       # Serviços
+├── produtos.html       # Produtos
+├── cadastro.html       # Cadastro de cliente/pet
+├── agendamento.html    # Agendamento de serviços
+├── contato.html        # Contato
+├── assets/
+│   ├── css/styles.css  # Estilos próprios
+│   ├── js/script.js    # Funções de JavaScript
+│   └── img/            # Imagens (logo e produtos)
+└── README.md           # Este arquivo de ajuda
 ```
 
-Os nomes de arquivos e pastas seguem a convenção: **apenas letras
-minúsculas, sem espaços e sem acentos**, garantindo compatibilidade com
-o GitHub Pages (que diferencia maiúsculas de minúsculas).
+---
 
-## Status do projeto
+## 🔗 Links do projeto
 
-Este repositório corresponde à **Fase 1** do trabalho, cujo escopo é
-restrito ao seguinte:
+> Cole aqui os endereços depois de publicar:
 
-- Apenas HTML5 (sem `<style>`, sem `style="..."`, sem arquivos `.css`,
-  sem `<link rel="stylesheet">`).
-- Sem Bootstrap ou qualquer outro framework / CDN.
-- Sem JavaScript (sem `<script>`, sem eventos como `onclick`).
-- Atributos HTML de apresentação (`width`, `height`, `align`, `border`)
-  são permitidos por serem parte do HTML, não do CSS.
+- **Repositório no GitHub:** _<cole aqui o link do repositório>_
+- **Site publicado (GitHub Pages):** _<cole aqui o link do GitHub Pages>_
 
-Na **Fase 2** do projeto serão acrescentados ao site:
+---
 
-- **CSS** para estilização (cores, tipografia, espaçamentos, layout).
-- **Bootstrap** como framework de componentes e grid responsivo.
-- **JavaScript** para interatividade (validação de formulário, menus
-  dinâmicos, efeitos, etc.).
-
-## Links do projeto
-
-- Repositório no GitHub: _(preencher após criar o repositório)_
-- Site publicado no GitHub Pages: _(preencher após o deploy)_
-
-## Autoria
-
-Desenvolvido por **Leticia Pinto Chaves** como projeto acadêmico do
-curso, ano 2026.
+Desenvolvido por **Leticia Pinto Chaves**.
