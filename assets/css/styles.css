@@ -1,0 +1,313 @@
+/* ============================================================
+   Pet Amigo - estilos próprios (complementam o Bootstrap 5)
+   ============================================================ */
+
+/* Tipografia amigável e arredondada */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@500;700&display=swap');
+
+/* ---------- Paleta de cores (variáveis CSS) ---------- */
+:root {
+    --cor-primaria: #ff7a59;          /* coral vibrante (uso decorativo) */
+    --cor-primaria-escura: #c8431c;   /* laranja queimado: botões e links (contraste AA) */
+    --cor-primaria-hover: #9c3411;    /* hover/active mais escuro */
+    --cor-secundaria: #0f766e;        /* turquesa escuro: títulos e cabeçalho de tabela (contraste AA) */
+    --cor-destaque: #ffd166;          /* amarelo quente */
+    --cor-fundo: #fff8f0;             /* creme suave */
+    --cor-card: #ffffff;
+    --cor-texto: #2b2926;             /* texto escuro legível */
+    --cor-texto-claro: #ffffff;
+    --cor-foco: #0b5bd3;              /* azul do foco de teclado */
+    --sombra: 0 4px 14px rgba(0, 0, 0, 0.10);
+    --raio: 14px;
+    --transicao: 0.25s ease;
+}
+
+/* ---------- Base ---------- */
+body {
+    font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+    line-height: 1.6;
+    padding-bottom: 0;
+}
+
+h1, h2, h3,
+header h1,
+.carousel-caption h2 {
+    font-family: 'Quicksand', 'Nunito', sans-serif;
+    font-weight: 700;
+}
+
+a {
+    color: var(--cor-primaria-escura);
+    text-decoration: none;
+    transition: color var(--transicao);
+}
+
+a:hover {
+    color: var(--cor-primaria-hover);
+    text-decoration: underline;
+}
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2.5rem;
+}
+
+/* ---------- Acessibilidade ---------- */
+
+/* Link "Pular para o conteúdo": oculto até receber foco pelo teclado */
+.skip-link {
+    position: absolute;
+    left: 0.5rem;
+    top: -4rem;
+    z-index: 1080;
+    background: var(--cor-texto);
+    color: var(--cor-texto-claro);
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 var(--raio) var(--raio);
+    font-weight: 700;
+    transition: top var(--transicao);
+}
+
+.skip-link:focus {
+    top: 0;
+    color: var(--cor-texto-claro);
+    text-decoration: none;
+}
+
+/* Foco visível e de alto contraste ao navegar por teclado (Tab) */
+:focus-visible {
+    outline: 3px solid var(--cor-foco);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--cor-card);
+}
+
+/* O <main> recebe foco via skip link, mas sem contorno permanente */
+main:focus,
+main:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+    background: linear-gradient(135deg, #ff9472 0%, var(--cor-destaque) 100%);
+    color: var(--cor-texto);
+    text-align: center;
+    padding: 1.5rem 1rem 0.5rem;
+    box-shadow: var(--sombra);
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+header h1 img {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    background: var(--cor-card);
+    border-radius: 50%;
+    padding: 4px;
+    box-shadow: var(--sombra);
+}
+
+header > p {
+    margin: 0.25rem 0;
+    font-size: 1.05rem;
+}
+
+/* Saudação dinâmica + relógio (preenchidos pelo script.js) */
+.header-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    min-height: 1.5rem;
+}
+
+#relogio {
+    background: rgba(255, 255, 255, 0.22);
+    padding: 0.15rem 0.7rem;
+    border-radius: 999px;
+}
+
+header hr {
+    border: none;
+    border-top: 2px dashed rgba(43, 41, 38, 0.45);
+    margin: 0.75rem 0 0;
+}
+
+/* ---------- Navegação ---------- */
+header nav ul,
+footer nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.25rem;
+    padding: 0.5rem 0;
+    margin: 0;
+}
+
+header nav a {
+    color: var(--cor-texto);
+    font-weight: 700;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    transition: background var(--transicao), color var(--transicao);
+}
+
+header nav a:hover {
+    background: var(--cor-card);
+    color: var(--cor-primaria-escura);
+    text-decoration: none;
+}
+
+/* ---------- Carrossel ---------- */
+.carousel-inner {
+    background: var(--cor-card);
+}
+
+.carousel-item img {
+    max-height: 420px;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.carousel-caption {
+    background: rgba(43, 41, 38, 0.72);
+    border-radius: var(--raio);
+    padding: 0.75rem 1rem;
+}
+
+.carousel-caption h2 {
+    color: var(--cor-destaque);
+    margin-bottom: 0.25rem;
+}
+
+/* ---------- Botões (sobrescreve o Bootstrap) ---------- */
+.btn-primary {
+    --bs-btn-bg: var(--cor-primaria-escura);
+    --bs-btn-border-color: var(--cor-primaria-escura);
+    --bs-btn-hover-bg: var(--cor-primaria-hover);
+    --bs-btn-hover-border-color: var(--cor-primaria-hover);
+    --bs-btn-active-bg: var(--cor-primaria-hover);
+    --bs-btn-active-border-color: var(--cor-primaria-hover);
+    --bs-btn-color: #ffffff;
+    --bs-btn-hover-color: #ffffff;
+    --bs-btn-active-color: #ffffff;
+    font-weight: 700;
+    border-radius: 999px;
+    padding: 0.5rem 1.5rem;
+    transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra);
+}
+
+/* ---------- Cards / figuras de produto (efeito hover) ---------- */
+.card,
+main figure {
+    background: var(--cor-card);
+    border: none;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.card:hover,
+main figure:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(232, 95, 61, 0.25);
+}
+
+main figure img {
+    display: block;
+    margin: 0 auto 0.75rem;
+}
+
+main figure figcaption h3 {
+    color: var(--cor-primaria-escura);
+}
+
+/* Seções e tabela */
+section h2 {
+    color: var(--cor-secundaria);
+    border-bottom: 3px solid var(--cor-destaque);
+    display: inline-block;
+    padding-bottom: 0.2rem;
+}
+
+table {
+    background: var(--cor-card);
+    border-radius: var(--raio);
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+table thead {
+    background: var(--cor-secundaria);
+    color: var(--cor-texto-claro);
+}
+
+/* Formulários */
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 0.2rem rgba(255, 122, 89, 0.25);
+}
+
+/* ---------- Rodapé ---------- */
+footer {
+    background: var(--cor-texto);
+    color: var(--cor-texto-claro);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: var(--cor-destaque);
+}
+
+footer nav a {
+    color: var(--cor-texto-claro);
+}
+
+footer hr {
+    border-top: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+footer address {
+    font-style: normal;
+    margin: 0.75rem 0;
+}
+
+/* ---------- Responsividade (mobile) ---------- */
+@media (max-width: 576px) {
+    header nav ul,
+    footer nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .carousel-item img {
+        max-height: 260px;
+    }
+
+    .header-info {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
